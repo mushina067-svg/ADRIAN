@@ -1,0 +1,85 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Adrián · Rutina de fuerza</title>
+<style>
+:root{--bg:#0b1220;--card:#131d30;--line:#26344d;--t:#eef3f8;--m:#8ea0b8;--g:#1a9e4a;--a:#d08a1c;--b:#2b7fd0}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,Segoe UI,sans-serif;background:var(--bg);color:var(--t)}
+header{padding:18px 20px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+h1{margin:0;font-size:22px;letter-spacing:.12em}h1 small{display:block;font-size:12px;color:var(--m);letter-spacing:0}
+main{padding:16px 20px;max-width:1000px;margin:auto}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:14px}
+.card h2{margin:0 0 10px;font-size:15px;text-transform:uppercase;letter-spacing:.08em;color:var(--m)}
+.rms{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+label{font-size:12px;color:var(--m)}input{width:100%;font:inherit;font-size:16px;padding:8px;border-radius:8px;border:1px solid var(--line);background:#0d1626;color:var(--t)}
+button{font:inherit;cursor:pointer;border-radius:9px;border:1px solid var(--line);background:#1b2840;color:var(--t);padding:8px 12px}
+button.p{background:var(--g);border-color:var(--g)}
+.weeks{display:flex;flex-wrap:wrap;gap:6px}
+.weeks button{min-width:76px;display:flex;flex-direction:column;align-items:center;line-height:1.2;padding:6px 8px;font-weight:700}
+.weeks .wd{font-size:10px;font-weight:400;color:var(--m)}
+.weeks .on{background:var(--b);border-color:var(--b)}.weeks .on .wd{color:#dbe9fa}
+.weeks .dl .wd{color:var(--a)}.weeks .done{text-decoration:line-through;opacity:.7}
+.weeks .hoy{outline:2px solid var(--g);outline-offset:1px}
+table{width:100%;border-collapse:collapse;font-size:14px}th,td{padding:8px 6px;border-bottom:1px solid var(--line);text-align:left}th{color:var(--m);font-size:12px}
+.kg{font-weight:700;font-size:16px}.tag{font-size:11px;padding:2px 7px;border-radius:20px;background:#3a2a0e;color:var(--a)}.ok{background:#0f3320;color:#5fd38b}
+.note{font-size:13px;color:var(--m)}
+@media print{body{background:#fff;color:#000}header button,.noprint{display:none!important}.card{border:1px solid #999;background:#fff;break-inside:avoid}th,td{border-color:#bbb}.kg{color:#000}*{color:#000!important}}
+</style></head><body>
+<header><h1>ADRIÁN<small>Rutina de fuerza · 2 días · Coach Daniel Wottrich</small></h1>
+<div><button onclick="window.print()">Guardar PDF / Imprimir</button></div></header>
+<main>
+<div class="card noprint"><h2>RM actuales (kg)</h2><div class="rms" id="rms"></div>
+<p class="note">La serie de 2 reps sube 2 kg por semana de carga. Cada 4.ª semana es descarga al 90/80 % del RM. El ciclo termina cuando la serie de 2 reps llega al 100 % del RM: ingresa los RM nuevos y toca <b>Nuevo ciclo</b>.</p>
+<button class="p" onclick="nuevoCiclo()">Nuevo ciclo (aplicar RM nuevos)</button> <span class="note" id="ciclo"></span></div>
+<div class="card noprint"><h2>Semana</h2><div class="weeks" id="weeks"></div><p class="note" id="fechas"></p></div>
+<p class="note" id="resumen">Ciclo 1 · Semanas 1–7 · 23 nov 2026 → 10 ene 2027</p>
+<div id="plan"><div class="card"><h2 style="color:var(--t);font-size:18px">DÍA 1 · Semana 1 · 23 nov – 29 nov </h2>
+<table><tr><th>Ejercicio</th><th>Serie</th><th>Reps</th><th>Peso</th><th>%RM</th><th>Descanso</th></tr>
+<tr><td rowspan="4"><b>Press de banca</b><br><span class="note">RM 90 kg</span> </td><td>1</td><td>2</td><td class="kg">81 kg</td><td>90 %</td><td>3 min</td></tr><tr><td>2</td><td>2</td><td class="kg">81 kg</td><td>90 %</td><td>3 min</td></tr><tr><td>3</td><td>4</td><td class="kg">72 kg</td><td>80 %</td><td>3 min</td></tr><tr><td>4</td><td>4</td><td class="kg">72 kg</td><td>80 %</td><td>3 min</td></tr><tr><td rowspan="4"><b>Power snatch</b><br><span class="note">RM 60 kg</span> </td><td>1</td><td>2</td><td class="kg">54 kg</td><td>90 %</td><td>3 min</td></tr><tr><td>2</td><td>2</td><td class="kg">54 kg</td><td>90 %</td><td>3 min</td></tr><tr><td>3</td><td>4</td><td class="kg">48 kg</td><td>80 %</td><td>3 min</td></tr><tr><td>4</td><td>4</td><td class="kg">48 kg</td><td>80 %</td><td>3 min</td></tr><tr><td rowspan="4"><b>Clean and jerk</b><br><span class="note">RM 60 kg</span> </td><td>1</td><td>2</td><td class="kg">54 kg</td><td>90 %</td><td>3 min</td></tr><tr><td>2</td><td>2</td><td class="kg">54 kg</td><td>90 %</td><td>3 min</td></tr><tr><td>3</td><td>4</td><td class="kg">48 kg</td><td>80 %</td><td>3 min</td></tr><tr><td>4</td><td>4</td><td class="kg">48 kg</td><td>80 %</td><td>3 min</td></tr></table></div><div class="card"><h2 style="color:var(--t);font-size:18px">DÍA 2 · Semana 1 · 23 nov – 29 nov </h2>
+<table><tr><th>Ejercicio</th><th>Serie</th><th>Reps</th><th>Peso</th><th>%RM</th><th>Descanso</th></tr>
+<tr><td rowspan="4"><b>Sentadilla</b><br><span class="note">RM 85 kg</span> </td><td>1</td><td>2</td><td class="kg">76.5 kg</td><td>90 %</td><td>3 min</td></tr><tr><td>2</td><td>2</td><td class="kg">76.5 kg</td><td>90 %</td><td>3 min</td></tr><tr><td>3</td><td>4</td><td class="kg">68 kg</td><td>80 %</td><td>3 min</td></tr><tr><td>4</td><td>4</td><td class="kg">68 kg</td><td>80 %</td><td>3 min</td></tr><tr><td rowspan="4"><b>Power clean</b><br><span class="note">RM 60 kg</span> </td><td>1</td><td>2</td><td class="kg">54 kg</td><td>90 %</td><td>3 min</td></tr><tr><td>2</td><td>2</td><td class="kg">54 kg</td><td>90 %</td><td>3 min</td></tr><tr><td>3</td><td>4</td><td class="kg">48 kg</td><td>80 %</td><td>3 min</td></tr><tr><td>4</td><td>4</td><td class="kg">48 kg</td><td>80 %</td><td>3 min</td></tr><tr><td rowspan="4"><b>Dominadas lastradas</b><br><span class="note">RM 30 kg</span> </td><td>1</td><td>2</td><td class="kg">27 kg</td><td>90 %</td><td>3 min</td></tr><tr><td>2</td><td>2</td><td class="kg">27 kg</td><td>90 %</td><td>3 min</td></tr><tr><td>3</td><td>4</td><td class="kg">24 kg</td><td>80 %</td><td>3 min</td></tr><tr><td>4</td><td>4</td><td class="kg">24 kg</td><td>80 %</td><td>3 min</td></tr></table></div></div>
+<div class="card noprint"><button id="hecho" onclick="toggleHecho()"></button></div>
+</main>
+<script>
+const EX={banca:'Press de banca',snatch:'Power snatch',cj:'Clean and jerk',sent:'Sentadilla',clean:'Power clean',dom:'Dominadas lastradas'};
+const DIAS=[['Día 1',['banca','snatch','cj']],['Día 2',['sent','clean','dom']]];
+const DEF={banca:90,sent:85,snatch:60,clean:60,cj:60,dom:30};
+const KEY='adrian-gym-v1';
+const START='2026-11-23';
+const MES=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+let S=JSON.parse(localStorage.getItem(KEY)||'null')||{rm:{...DEF},edit:{...DEF},week:1,done:[],ciclo:1,start:START};
+if(!S.start)S.start=START;
+const save=()=>localStorage.setItem(KEY,JSON.stringify(S));
+const r05=x=>Math.round(x*2)/2;
+const isDeload=w=>w%4===0;
+const loadsBefore=w=>{let n=0;for(let i=1;i<w;i++)if(!isDeload(i))n++;return n};
+const fmd=d=>`${d.getDate()} ${MES[d.getMonth()]}`;
+const fmy=d=>`${d.getDate()} ${MES[d.getMonth()]} ${d.getFullYear()}`;
+function wStart(w){const d=new Date(S.start+'T00:00:00');d.setDate(d.getDate()+(w-1)*7);return d}
+function wEnd(w){const d=wStart(w);d.setDate(d.getDate()+6);return d}
+const range=w=>`${fmd(wStart(w))} – ${fmd(wEnd(w))}`;
+function curWeek(){const s=new Date(S.start+'T00:00:00');const t=new Date();t.setHours(0,0,0,0);const i=Math.round((t-s)/86400000);return Math.floor(i/7)+1}
+function pesos(id,w){const rm=S.rm[id];if(isDeload(w))return{a:r05(rm*.9),b:r05(rm*.8),dl:true,top:false};
+ const inc=2*loadsBefore(w);const a=Math.min(r05(rm*.9+inc),rm);return{a,b:Math.min(r05(rm*.8+inc),rm),dl:false,top:a>=rm}}
+function totalWeeks(){let w=1;for(;w<200;w++){if(Object.keys(EX).every(id=>!isDeload(w)&&pesos(id,w).top))return w}return w}
+function render(){
+ document.getElementById('rms').innerHTML=Object.keys(EX).map(id=>`<div><label>${EX[id]}</label><input type="number" step="0.5" value="${S.edit[id]}" oninput="S.edit['${id}']=+this.value;save()"></div>`).join('');
+ const T=totalWeeks();
+ const c=curWeek();
+ if(S.auto!==false){S.week=Math.min(Math.max(c,1),T)}
+ if(S.week>T)S.week=T;
+ document.getElementById('ciclo').textContent=`Ciclo ${S.ciclo} · ${T} semanas · ${fmy(wStart(1))} → ${fmy(wEnd(T))}`;
+ document.getElementById('resumen').textContent=`Ciclo ${S.ciclo} · Semanas 1–${T} · ${fmy(wStart(1))} → ${fmy(wEnd(T))}`;
+ document.getElementById('weeks').innerHTML=Array.from({length:T},(_,i)=>i+1).map(w=>`<button class="${w===S.week?'on':''} ${isDeload(w)?'dl':''} ${S.done.includes(w)?'done':''} ${w===c&&c>=1&&c<=T?'hoy':''}" onclick="S.week=${w};S.auto=false;save();render()"><span>S${w}</span><span class="wd">${range(w)}</span></button>`).join('');
+ const w=S.week;
+ document.getElementById('fechas').textContent=(c<1)?`Hoy es ${fmy(new Date())} · la rutina empieza el lunes ${fmy(wStart(1))}`:(c>T?`Hoy es ${fmy(new Date())} · el ciclo terminó el ${fmy(wEnd(T))}`:`Hoy es ${fmy(new Date())} · toca la Semana ${c} (${range(c)})`);
+ document.getElementById('plan').innerHTML=planHTML(w);
+ document.getElementById('hecho').textContent=S.done.includes(w)?'✓ Semana completada (desmarcar)':'Marcar semana como completada';
+}
+function planHTML(w){return DIAS.map(([n,ids])=>`<div class="card"><h2 style="color:var(--t);font-size:18px">${n.toUpperCase()} · Semana ${w} · ${range(w)} ${isDeload(w)?'<span class="tag">Descarga</span>':''}</h2>
+<table><tr><th>Ejercicio</th><th>Serie</th><th>Reps</th><th>Peso</th><th>%RM</th><th>Descanso</th></tr>
+${ids.map(id=>{const p=pesos(id,w);return [1,2,3,4].map(s=>{const kg=s<3?p.a:p.b;return `<tr>${s===1?`<td rowspan="4"><b>${EX[id]}</b><br><span class="note">RM ${S.rm[id]} kg</span> ${p.top?'<span class="tag ok">100 %</span>':''}</td>`:''}<td>${s}</td><td>${s<3?2:4}</td><td class="kg">${kg} kg</td><td>${Math.round(kg/S.rm[id]*100)} %</td><td>3 min</td></tr>`}).join('')}).join('')}</table></div>`).join('')}
+function toggleHecho(){const w=S.week;S.done=S.done.includes(w)?S.done.filter(x=>x!==w):[...S.done,w];save();render()}
+function nuevoCiclo(){if(!confirm('¿Empezar un ciclo nuevo con los RM ingresados?'))return;
+ const T=totalWeeks();S.rm={...S.edit};S.start=(()=>{const d=wStart(T+1);return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`})();
+ S.week=1;S.auto=true;S.done=[];S.ciclo++;save();render()}
+render();
+</script></body></html>
